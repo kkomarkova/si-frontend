@@ -1,5 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useQuery, gql} from '@apollo/client';
+import {GET_PRODUCTS} from '../GraphQL/Queries'
+
 const Products = () =>{
+  const {error, loading, data} = useQuery(GET_PRODUCTS)
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])    
   return (
     <div>
       <h3 class="text-primary">Products</h3>
