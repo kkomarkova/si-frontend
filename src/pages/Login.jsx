@@ -1,17 +1,45 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+
+const url ='https://threeam.onrender.com/login/password'
+
 const Login = () =>{
+const [username, setUsername] = useState("");
+const [password, setPassword] = useState("");
+const [email, setEmail] = useState("");
+const [message, setMessage] = useState("");
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const resp = await axios.post(url, {email: email, username: username, password: password});
+    setMessage("User Logged in successfully")
+  } catch (error) {
+    console.log(error.response);
+    setMessage("User Login failed")
+  }
+};
+
   return (
     <>
-    <form>
+    <form onSubmit={handleSubmit}>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+    <input
+    type="email" value={email} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>{setEmail(e.target.value);}}/>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFirstName">Username</label>
+    <input value={username} type="text" class="form-control" id="exampleUsername" placeholder="Username" onChange={(e)=>{setUsername(e.target.value)}}/>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+    <input value={password} type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e)=>{setPassword(e.target.value);}}/>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
+  <div className="message">{message ? <p>{message}</p> : null}</div>
 </form>
 </>
   );
