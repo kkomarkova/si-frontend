@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { GET_PRODUCTS } from "../GraphQL/Queries";
