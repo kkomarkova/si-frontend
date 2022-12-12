@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import {  Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+
 const Navbar= () =>{
   return (
     <>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
-        <a class="navbar-brand" href="#"> 
+        <a class="navbar-brand"> 
         <Link to="/">Products</Link>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
