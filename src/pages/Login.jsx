@@ -2,22 +2,34 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { createContainer } from 'react-tracked';
+import { UserContext } from '../App';
 
-const url ='https://threeam.onrender.com/login/password'
-
+const urlLogin ='https://threeam.onrender.com/login/password'
+const urlGetUser = "https://threeam.onrender.com/user"
 const Login = () =>{
+
+
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 const [email, setEmail] = useState("");
 const [message, setMessage] = useState("");
-
+const {user,setUser} = React.useContext(UserContext)
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const resp = await axios.post(url, {email: email, username: username, password: password});
+    const resp = await axios.post(urlLogin, {email: email, username: username, password: password},{withCredentials:true});
+    console.log(resp);
+    if(resp.data.message==="Logged in successfully"){
+      //setGlobalUser
+      const userReturned = await axios.get(urlGetUser,{withCredentials:true});
+      console.log(userReturned.data);
+      setUser(userReturned.data);
+      console.log(user)
+    }
     setMessage("User Logged in successfully")
   } catch (error) {
-    console.log(error.response);
+    console.log(error);
     setMessage("User Login failed")
   }
 };

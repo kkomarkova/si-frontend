@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { GET_PRODUCTS } from "../GraphQL/Queries";
-
+import WishButton from '../components/WishButton';
 function Products() {
   const { error, loading, data } = useQuery(GET_PRODUCTS);
   const [products, setProducts] = useState([]);
@@ -65,6 +65,7 @@ function Products() {
                                   .additional_info
                               }
                             </td>
+                            <td><WishButton product_id={product.id}/></td>
                           </tr>
                         );
                       })}
