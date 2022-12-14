@@ -3,6 +3,7 @@ import React from 'react';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../App';
+import InviteButton from '../components/InviteButton';
 
 
 
@@ -66,6 +67,7 @@ const Register = () => {
                    })}
                     </tbody>
         </table>
+        <InviteButton></InviteButton>
         </>
   );
 }

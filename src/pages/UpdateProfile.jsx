@@ -2,15 +2,16 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { UserContext } from '../App';
 
 const url ='https://threeam.onrender.com/updateuser'
 
 const UpdateProfile = () =>{
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
+
 const [file, setFile] = useState();
 const [message, setMessage] = useState("");
 
+const {user,setUser} = React.useContext(UserContext)
 const handleSubmit = async (e) => {
   e.preventDefault();
   const blob= new FormData()
@@ -18,7 +19,9 @@ const handleSubmit = async (e) => {
   console.log(blob)
   try {
     const resp = await axios.put(url,blob,{withCredentials:true,headers:{'Content-Type': 'multipart/form-data'}});
-    console.log(resp.message);
+    console.log(resp.data.message);
+    setUser({...user,image_url:resp.data.message})
+    console.log(user)
     setMessage("User Image saved successfully")
   } catch (error) {
     console.log(error);

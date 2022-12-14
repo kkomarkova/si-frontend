@@ -19,6 +19,7 @@ import Profile from './pages/Profile';
 import Products from './pages/Products';
 import UpdateProfile from './pages/UpdateProfile';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Invite from './pages/Invite';
 export const UserContext = React.createContext({user:{},setUser:()=>{}});
 
 //What we gonna do if there is an error
@@ -49,7 +50,7 @@ function App(props) {
       <Navbar />
       <Routes>
         <Route path='/' exact element={<Products/>} />
-        
+        <Route path='/Invite' element={<Invite/>} />
         <Route path='/Login' element={<Login/>} />
         <Route path='/Register' element={<Register/>} />
         <Route path='/UpdateProfile' element={<UpdateProfile/>} />
