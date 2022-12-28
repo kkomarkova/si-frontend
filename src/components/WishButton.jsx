@@ -7,8 +7,8 @@ const url ='https://threeam.onrender.com/wishes'
 
 
 const WishButton = ({product_id})=>{
-  const [message, setMessage] = useState("");
-  const {user,setUser} = React.useContext(UserContext)
+  const [setMessage] = useState("");
+  const {user} = React.useContext(UserContext)
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(product_id)

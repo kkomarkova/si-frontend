@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+/* eslint-disable array-callback-return */
 import './App.css';
 import { useState } from 'react';
 import {
