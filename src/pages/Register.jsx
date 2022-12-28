@@ -63,8 +63,7 @@ if(searchParams.get('id')){
   <form onSubmit={handleSubmit}>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input
-    type="email" value={email} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>{setEmail(e.target.value);}}/>
+    <input value={email} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>{setEmail(e.target.value);}}/>
   </div>
   <div class="form-group">
     <label for="exampleInputFirstName">Username</label>

@@ -2,7 +2,6 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { createContainer } from 'react-tracked';
 import { UserContext } from '../App';
 
 const urlLogin ='https://threeam.onrender.com/login/password'
@@ -40,7 +39,7 @@ const handleSubmit = async (e) => {
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input
-    type="email" value={email} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>{setEmail(e.target.value);}}/>
+    value={email} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>{setEmail(e.target.value);}}/>
   </div>
   <div class="form-group">
     <label for="exampleInputFirstName">Username</label>
