@@ -30,6 +30,7 @@ const Register = () => {
       <div class="form-group">
         <label>Image</label>
         <img width="100px" height="100px" src={user.image_url} alt='images'/>
+        <InviteButton></InviteButton>
       </div></>)
     }
   return (

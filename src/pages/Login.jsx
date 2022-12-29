@@ -17,6 +17,7 @@ const {user,setUser} = React.useContext(UserContext)
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
+    console.log(username);
     const resp = await axios.post(urlLogin, {email: email, username: username, password: password},{withCredentials:true});
     console.log(resp);
     if(resp.data.message==="Logged in successfully"){

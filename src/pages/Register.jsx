@@ -16,7 +16,7 @@ const [message, setMessage] = useState("");
 const handleSubmit = async (e) => {
   e.preventDefault();
  try {
-  const resp = await axios.post(url, {email: email, username: username, password: password});
+  const resp = await axios.post(url, {email: email, username: username, password: password},{withCredentials:true});
  setMessage("User created successfully")
 } catch (error) {
   console.log(error.response);
@@ -26,15 +26,17 @@ const handleSubmit = async (e) => {
 const handleSubmitInvite = async (e) => {
   e.preventDefault();
  try {
-  const resp = await axios.post(`https://threeam.onrender.com/invite?token=${searchParams.get('id')}`, {email: email, username: username, password: password});
- setMessage("User created successfully")
+  console.log("SUBMIT INVITE");
+  const resp = await axios.post(`https://threeam.onrender.com/invite?token=${searchParams.get('id')}`, {email: email, username: username, password: password},{withCredentials:true});
+ console.log(resp)
+  setMessage("User created successfully")
 } catch (error) {
   console.log(error.response);
   setMessage("User sign up failed")
 }
 };
 const [searchParams, setSearchParams] = useSearchParams();
-console.log(searchParams.get('id'))
+console.log(searchParams)
 if(searchParams.get('id')){
   console.log("HERE")
   return(<>
