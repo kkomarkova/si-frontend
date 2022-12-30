@@ -3,7 +3,8 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../App';
-
+import { loginSocket } from '../socket';
+import { Link } from 'react-router-dom';
 const urlLogin ='https://threeam.onrender.com/login/password'
 const urlGetUser = "https://threeam.onrender.com/user"
 const Login = () =>{
@@ -25,6 +26,7 @@ const handleSubmit = async (e) => {
       const userReturned = await axios.get(urlGetUser,{withCredentials:true});
       console.log(userReturned.data);
       setUser(userReturned.data);
+      loginSocket(userReturned.data.username)
       console.log(user)
     }
     setMessage("User Logged in successfully")

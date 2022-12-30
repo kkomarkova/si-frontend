@@ -13,7 +13,7 @@ const {user,setUser} = React.useContext(UserContext)
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await axios.post(url, {toemail:email,url:"http://localhost:3000/register?id="},{withCredentials:true});
+      const resp = await axios.post(url, {toemail:email,url:"https://sgoatfrontend.azurewebsites.net/Register?id="},{withCredentials:true});
        console.log(resp.data);
        if(resp.data.message==="Wish added"){
        console.log("Wished item")
