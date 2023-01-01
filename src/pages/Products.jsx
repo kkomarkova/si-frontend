@@ -24,19 +24,17 @@ function Products() {
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">ID</th>
+                      <th scope="col">Image URL</th>
                       <th scope="col">Product name</th>
-                      <th scope="col">Overall rating</th>
-                      <th scope="col">Product description</th>
                       <th scope="col">Main category</th>
                       <th scope="col">Sub category</th>
+                      <th scope="col">Product description</th>
+                      <th scope="col">Overall rating</th>
                       <th scope="col">Price</th>
                       <th scope="col">Link</th>
-                      <th scope="col">Image URL</th>
-                      <th scope="col">Alt text</th>
-                      <th scope="col">Image Additional information</th>
                       <th scope="col">Choices</th>
                       <th scope="col">Additional information</th>
+                      <th scope="col">Options</th>
                     </tr>
                   </thead>
 
@@ -45,20 +43,15 @@ function Products() {
                       products.map((product) => {
                         return (
                           <tr>
-                            <th scope="row">{product.id}</th>
+                            <td><img src={product.product_images[0].image_url} alt={product.product_images[0].alt_text} width="100" /></td>
                             <td>{product.product_name}</td>
-                            <td>{product.overall_rating}</td>
-                            <td>{product.product_description}</td>
                             <td>{product.main_category}</td>
                             <td>{product.sub_category}</td>
-                            <td>{product.price}</td>
+                            <td>{product.product_description.substring(0, 100)}...</td>
+                            <td>{product.overall_rating}</td>
+                            <td>{product.price}£</td>
                             <td>{product.link}</td>
-                            <td>{product.product_images[0].image_url}</td>
-                            <td>{product.product_images[0].alt_text}</td>
-                            <td>{product.product_images[0].additional_info}</td>
-                            <td>
-                              {product.product_additional_info[0].choices}
-                            </td>
+                            <td>{product.product_additional_info[0].choices}</td>
                             <td>
                               {
                                 product.product_additional_info[0]
