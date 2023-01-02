@@ -3,38 +3,41 @@ import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { GET_PRODUCTS } from "../GraphQL/Queries";
 import WishButton from "../components/WishButton";
-import showPagination from "../components/Pagination";
+import ShowPagination from "../components/Pagination";
 function Products() {
   const { error, loading, data } = useQuery(GET_PRODUCTS);
   const [products, setProducts] = useState([]);
   const [productperpage, setProductperpage] = useState(10);
   const [currentpage, setCurrentpage] = useState(1);
   const [productImages, setProductImages] = useState([]);
-
+  const[currentProducts,setCurrentProducts] = useState([]);
   //Constatly log data to console
   useEffect(() => {
     if (data) {
       //console.log(data.GetAllProducts);
-      const indexOfLastPage = currentpage * productperpage;
+      const indexOfLastPage = currentpage * 10;
       const indexOfFirstPage = indexOfLastPage - productperpage;
       const currentProducts = data.GetAllProducts.slice(
         indexOfFirstPage,
         indexOfLastPage
       );
-
+      setCurrentProducts(currentProducts)
       setProducts(data.GetAllProducts);
       console.log(data.GetAllProducts[0].product_images[0]);
       setProductImages(data.GetAllProducts);
     }
-  }, [data]);
+  }, [data]); 
 
+  console.log(currentProducts)
   return (
     <>
       <h3 class="text-primary">Products</h3>
-      <showPagination postsPerPage = {productperpage} data ={data} setCurrentpage = {setCurrentpage} currentPage ={currentpage} />
+      <ShowPagination postsPerPage = {productperpage} setProducts={setCurrentProducts}data={products} setCurrentpage = {setCurrentpage} currentPage ={currentpage} />
+
       <table class="table table-striped">
         <thead>
           <tr>
+            <th scope="col">Number</th>
             <th scope="col">Image URL</th>
             <th scope="col">Product name</th>
             <th scope="col">Main category</th>
@@ -50,11 +53,11 @@ function Products() {
         </thead>
 
         <tbody>
-          {products &&
-            products.map((product, index) => {
+          {currentProducts &&
+            currentProducts.map((product, index) => {
               return (
                 <tr>
-                  <td>{productperpage * (currentpage - 1) + index + 1}</td>
+                  <td>{10 * (currentpage - 1) + index + 1}</td>
                   <td>
                     <img
                       src={product.product_images[0].image_url}
@@ -79,6 +82,7 @@ function Products() {
             })}
         </tbody>
       </table>
+
     </>
   );
 }
