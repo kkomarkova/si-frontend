@@ -60,11 +60,12 @@ const Register = () => {
                     </thead>
                     <tbody>
                    { wishlist.map((item)=>{
-
-                       return(<>
+                     const time =new Date(item.date_added).getTime() -new Date().getTimezoneOffset()*60*1000;
+                      console.log(new Date(time))
+                      return(<>
                         <tr>
                         <td>{item.id}</td>
-                        <td>{new Date(item.date_added).toLocaleString()}</td>
+                        <td>{new Date(time).toLocaleString('en-GB')}</td>
                         <td>{item.product_id}</td>
                         </tr>
                        </>)
