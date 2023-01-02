@@ -64,7 +64,7 @@ const Register = () => {
                        return(<>
                         <tr>
                         <td>{item.id}</td>
-                        <td>{item.date_added}</td>
+                        <td>{new Date(item.date_added).toLocaleString()}</td>
                         <td>{item.product_id}</td>
                         </tr>
                        </>)
