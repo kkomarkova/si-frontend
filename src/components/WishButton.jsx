@@ -2,13 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../App';
-
+import {useNavigate} from 'react-router-dom';
 const url ='https://threeam.onrender.com/wishes'
 
 
 const WishButton = ({product_id})=>{
-  const [setMessage] = useState("");
+  const [message,setMessage] = useState("");
   const {user} = React.useContext(UserContext)
+  const history =useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(product_id)
@@ -17,8 +18,10 @@ const WishButton = ({product_id})=>{
            console.log(resp);
            if(resp.data.message==="Wish added"){
            console.log("Wished item")
+           setMessage("WishItem added")
+           history("/profile")
           }
-          setMessage("User Logged in successfully")
+
         } catch (error) {
           console.log(error.response);
           setMessage("User Login failed")

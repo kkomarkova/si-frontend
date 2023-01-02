@@ -5,6 +5,7 @@ import axios from 'axios';
 import { UserContext } from '../App';
 import { loginSocket } from '../socket';
 import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 const urlLogin ='https://threeam.onrender.com/login/password'
 const urlGetUser = "https://threeam.onrender.com/user"
 const Login = () =>{
@@ -15,6 +16,7 @@ const [password, setPassword] = useState("");
 const [email, setEmail] = useState("");
 const [message, setMessage] = useState("");
 const {user,setUser} = React.useContext(UserContext)
+const history = useNavigate()
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
@@ -28,6 +30,7 @@ const handleSubmit = async (e) => {
       setUser(userReturned.data);
       loginSocket(userReturned.data.username)
       console.log(user)
+      history("/")
     }
     setMessage("User Logged in successfully")
   } catch (error) {
@@ -52,7 +55,7 @@ const handleSubmit = async (e) => {
     <label for="exampleInputPassword1">Password</label>
     <input value={password} type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e)=>{setPassword(e.target.value);}}/>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+ <button type="submit" class="btn btn-primary">Submit</button>
   <div className="message">{message ? <p>{message}</p> : null}</div>
 </form>
 </>

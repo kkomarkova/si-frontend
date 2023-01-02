@@ -3,14 +3,14 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../App';
-
+import {useNavigate} from 'react-router-dom';
 const url ='https://threeam.onrender.com/updateuser'
 
 const UpdateProfile = () =>{
 
 const [file, setFile] = useState();
 const [message, setMessage] = useState("");
-
+const history = useNavigate()
 const {user,setUser} = React.useContext(UserContext)
 const handleSubmit = async (e) => {
   e.preventDefault();
